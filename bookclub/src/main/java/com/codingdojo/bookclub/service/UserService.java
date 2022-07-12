@@ -43,7 +43,7 @@ public class UserService {
         if (!BCrypt.checkpw(loginUser.getPassword(), foundUser.get().getPassword()))
             result.rejectValue("password", "password", "Incorrect Password");
 
-        if (result.hasErrors()) return null; // used same statement twice to display correct messages in every case
+        if (result.hasErrors()) return null; 
 
         return foundUser.get();
     }
