@@ -30,7 +30,12 @@ public class User {
     @NotEmpty(message = "Password is required")
     private String confirm;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "reviews", 
+        joinColumns = @JoinColumn(name = "user_id"), 
+        inverseJoinColumns = @JoinColumn(name = "book_id")
+    )
     private List<Book> books;
 
     public User() {}
