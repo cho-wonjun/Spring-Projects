@@ -20,8 +20,12 @@ public class Book {
     @NotEmpty(message = "My thoughts are required")
     private String thoughts;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "reviews", 
+        joinColumns = @JoinColumn(name = "book_id"), 
+        inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
     private User user;
 
     public Book() {}
